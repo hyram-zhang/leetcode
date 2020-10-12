@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../projects/env/dev/algorithms"
+		},
+		{
+			"name": ".leetcode",
+			"path": "."
+		}
+	],
+	"settings": {
+		"workbench.colorCustomizations": {
+			"statusBar.noFolderBackground": "#8FBCBB",
+			"statusBar.debuggingBackground": "#8FBCBB"
+		},
+		"python.dataScience.jupyterServerURI": "local"
+	}
+}
