@@ -21,5 +21,12 @@ class Solution:
             pre = node
         return pre_head.next
 
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        new_head = head.next
+        head.next = self.swapPairs(new_head.next)
+        new_head.next = head
+        return new_head
 
 # @lc code=end

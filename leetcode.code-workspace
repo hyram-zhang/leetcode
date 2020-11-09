@@ -1,14 +1,11 @@
 {
-	"folders": [
-		{
-			"name": ".leetcode",
-			"path": "."
-		}
-	],
-	"settings": {
-		"workbench.colorCustomizations": {
-			"statusBar.noFolderBackground": "#8FBCBB",
-			"statusBar.debuggingBackground": "#8FBCBB"
-		}
-	}
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "name": ".leetcode",
+            "path": "../../../home/ubuntu/.leetcode"
+        }
+    ]
 }

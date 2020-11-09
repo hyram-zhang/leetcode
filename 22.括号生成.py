@@ -7,31 +7,61 @@
 # @lc code=start
 from typing import List, Generator
 
+from typing import List
+from functools import lru_cache
 
 class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def is_vaild(s:str):
+            stack = []
+            for c in s:
+                if c == '(':
+                    stack.append(c)
+                else:
+                    if not stack:
+                        return False
+                    else:
+                        stack.pop()
+            return not stack
+        res = []
+        def _generateParenthesis(n:int, s:str):
+            if not n:
+                res.append(s)
+                return
+            _generateParenthesis(n-1, s+'(')
+            _generateParenthesis(n-1, s+')')
+        _generateParenthesis(n*2, '')
+        return [c for c in res if is_vaild(c)]
 
     def generateParenthesis(self, n: int) -> List[str]:
-        return list(self._generate(0, 0, n, ''))
+        res = []
+        def _generateParenthesis(left:int, right:int, s:str):
+            if right+left == 2*n:
+                res.append(s)
+            if left < n:
+                _generateParenthesis(left+1, right, s+'(')
+            if left > right and right < n:
+                _generateParenthesis(left, right+1, s+')')
+        _generateParenthesis(0, 0, '')
+        return res
 
-    def _generate(self, left: int, right: int, n: int, s: string) -> Generator:
-        if left == right == n:
-            yield s
-        if left < n:
-            yield from self._generate(left+1, right, n, f"{s}(")
-        if left > right:
-            yield from self._generate(left, right+1, n, f"{s})")
-
-
-class Solution:
-    @lru_cache(None)
     def generateParenthesis(self, n: int) -> List[str]:
-        def _generate():
+        @lru_cache(None)
+        def _generateParenthesis(n:int):
             if not n:
                 yield ''
             for i in range(n):
                 for part_a in self.generateParenthesis(i):
-                    for part_b in self.generateParenthesis(n-1-i):
-                        yield f"({part_a}){part_b}"
-        return list(_generate())
+                    for part_b in self.generateParenthesis(n-i-1):
+                        #yield '(' + part_a +')' + part_b
+                        yield f'({part_a}){part_b}'
+        return list(_generateParenthesis(n))
+
+            
+
+            
+
+
+
 
 # @lc code=end

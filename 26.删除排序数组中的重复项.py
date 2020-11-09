@@ -7,15 +7,27 @@
 # @lc code=start
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        length = len(nums)
-        if length < 2:
-            return length
-        pos = 0
-        for i in range(1, length):
-            if nums[i] != nums[i-1]:
-                pos += 1
-                nums[pos] = nums[i]
-        return pos + 1
+        cur = 1
+        for index in range(1,len(nums)):
+            if nums[index] != nums[index-1]:
+                nums[cur] = nums[index]
+                cur += 1
+        return cur
+    def removeDuplicates(self, nums: List[int]) -> int:
+        alist=sorted(set(nums))
+        nums[:len(alist)] = alist
+        return len(alist)
 
+    def removeDuplicates(self, nums: List[int]) -> int:
+        dup_count = 0
+        for index in range(1, len(nums)):
+            if nums[index] != nums[index-1]:
+                nums[index-dup_count] = nums[index]
+            else:
+                dup_count += 1
+        return len(nums) - dup_count
+
+
+        
 
 # @lc code=end

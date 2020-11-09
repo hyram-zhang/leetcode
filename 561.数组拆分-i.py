@@ -23,6 +23,7 @@ class Solution:
         is_odd = False
         total = 0
         for val in range(-10000, 10001):
+            #奇数的数量需要+1
             total += (alist[val+lim] + 1 - is_odd)//2 * val
             is_odd = not is_odd if alist[val+lim] % 2 else is_odd
         return total

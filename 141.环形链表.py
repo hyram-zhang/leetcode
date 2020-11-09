@@ -13,18 +13,8 @@
 
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
-        node_set = set()
-        node = head
-        while node:
-            if node in node_set:
-                return True
-            node_set.add(node)
-            node = node.next
-        return False
-
-
-class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
+        if not head or not head.next:
+            return False
         slow = fast = head
         while fast and fast.next:
             slow = slow.next
@@ -32,6 +22,16 @@ class Solution:
             if slow is fast:
                 return True
         return False
+    def hasCycle(self, head: ListNode) -> bool:
+        if not head or not head.next:
+            return False
+        aset = set()
+        while head and id(head) not in aset:
+            aset.add(id(head))
+            head = head.next
+        return bool(head)
+
+
 
 
 # @lc code=end
